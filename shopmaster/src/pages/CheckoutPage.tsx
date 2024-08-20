@@ -20,32 +20,38 @@ const CheckoutPage: React.FC = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit: SubmitHandler<CheckoutFormInputs> = data => {
+  const onSubmit: SubmitHandler<CheckoutFormInputs> = (data) => {
     console.log(data);
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="container mx-auto p-4">
-      <div className="mb-4">
-        <label className="block text-sm font-bold mb-2">Name</label>
-        <input {...register('name')} placeholder="Name" className="w-full p-2 border rounded" />
-        {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>}
-      </div>
+    <div className="container mx-auto p-4">
+      <h1 className="text-2xl font-bold">Checkout</h1>
+      <form onSubmit={handleSubmit(onSubmit)} className="mt-4">
+        <input
+          {...register('name')}
+          placeholder="Name"
+          className="p-2 border rounded-lg w-full mb-2"
+        />
+        {errors.name && <p className="text-red-500">{errors.name.message}</p>}
 
-      <div className="mb-4">
-        <label className="block text-sm font-bold mb-2">Address</label>
-        <input {...register('address')} placeholder="Address" className="w-full p-2 border rounded" />
-        {errors.address && <p className="text-red-500 text-xs mt-1">{errors.address.message}</p>}
-      </div>
+        <input
+          {...register('address')}
+          placeholder="Address"
+          className="p-2 border rounded-lg w-full mb-2"
+        />
+        {errors.address && <p className="text-red-500">{errors.address.message}</p>}
 
-      <div className="mb-4">
-        <label className="block text-sm font-bold mb-2">Card Number</label>
-        <input {...register('cardNumber')} placeholder="Card Number" className="w-full p-2 border rounded" />
-        {errors.cardNumber && <p className="text-red-500 text-xs mt-1">{errors.cardNumber.message}</p>}
-      </div>
+        <input
+          {...register('cardNumber')}
+          placeholder="Card Number"
+          className="p-2 border rounded-lg w-full mb-2"
+        />
+        {errors.cardNumber && <p className="text-red-500">{errors.cardNumber.message}</p>}
 
-      <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Place Order</button>
-    </form>
+        <button type="submit" className="bg-blue-600 text-white p-2 rounded-lg w-full">Place Order</button>
+      </form>
+    </div>
   );
 };
 
